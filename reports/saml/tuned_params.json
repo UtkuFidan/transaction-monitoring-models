@@ -1,0 +1,343 @@
+{
+  "models": {
+    "lightgbm": {
+      "scale_pos_weight": 33.42793681945102,
+      "n_estimators": 441,
+      "learning_rate": 0.05070967174833528,
+      "num_leaves": 109,
+      "min_child_samples": 11,
+      "subsample": 0.9179282534598074,
+      "colsample_bytree": 0.7956504262457513,
+      "reg_alpha": 4.0724220477549505e-05,
+      "reg_lambda": 0.1703493998569483
+    },
+    "xgboost": {
+      "scale_pos_weight": 28.24688899236471,
+      "n_estimators": 500,
+      "learning_rate": 0.1387885106022552,
+      "max_depth": 5,
+      "min_child_weight": 1.450404600232122,
+      "subsample": 0.9612042436891627,
+      "colsample_bytree": 0.7459355131098708,
+      "gamma": 2.9454266972078256e-07,
+      "reg_alpha": 0.00017026922814935457,
+      "reg_lambda": 0.004773007673065005
+    },
+    "catboost": {
+      "scale_pos_weight": 1.4642063671745689,
+      "iterations": 485,
+      "learning_rate": 0.2819494382821587,
+      "depth": 6,
+      "l2_leaf_reg": 1.8084736203635918,
+      "random_strength": 0.14454376983030867,
+      "bagging_temperature": 1.8399296960037783,
+      "border_count": 196
+    }
+  },
+  "search": {
+    "lightgbm": {
+      "library": "lightgbm",
+      "val_pr_auc_tuning": 0.9924925370116616,
+      "n_trials": 32,
+      "seconds": 200.6
+    },
+    "xgboost": {
+      "library": "xgboost",
+      "val_pr_auc_tuning": 0.9927790190934803,
+      "n_trials": 66,
+      "seconds": 201.4
+    },
+    "catboost": {
+      "library": "catboost",
+      "val_pr_auc_tuning": 0.991915197528355,
+      "n_trials": 16,
+      "seconds": 201.5
+    }
+  },
+  "rules": {
+    "same_workload": [
+      {
+        "scenario": "TM-01-STRUCT",
+        "budget_frac": 1.0,
+        "budget": 5,
+        "params": {
+          "lower_band_frac": 0.209,
+          "min_count": 5,
+          "min_total": 6998.58,
+          "window_days": 4
+        },
+        "current_params": {
+          "lower_band_frac": 0.8,
+          "window_days": 7,
+          "min_count": 4,
+          "min_total": 10000
+        },
+        "tuning": {
+          "entities": 5,
+          "hits": 5,
+          "targets": 3203,
+          "current_entities": 0
+        },
+        "n_configs": 1561
+      },
+      {
+        "scenario": "TM-02-PASSTHRU",
+        "budget_frac": 1.0,
+        "budget": 5104,
+        "params": {
+          "min_events": 2,
+          "min_forward_ratio": 0.9,
+          "min_in_amount": 3000,
+          "window_hours": 48
+        },
+        "current_params": {
+          "min_in_amount": 3000,
+          "window_hours": 48,
+          "min_forward_ratio": 0.9,
+          "min_events": 2
+        },
+        "tuning": {
+          "entities": 5104,
+          "hits": 227,
+          "targets": 3203,
+          "current_entities": 5104
+        },
+        "n_configs": 43
+      },
+      {
+        "scenario": "TM-03-FAN",
+        "budget_frac": 1.0,
+        "budget": 3869,
+        "params": {
+          "min_counterparties": 10,
+          "min_onward_ratio": 0.5,
+          "min_total": 5000,
+          "window_days": 7
+        },
+        "current_params": {
+          "window_days": 7,
+          "min_counterparties": 10,
+          "min_total": 5000,
+          "min_onward_ratio": 0.5
+        },
+        "tuning": {
+          "entities": 3869,
+          "hits": 160,
+          "targets": 3203,
+          "current_entities": 3869
+        },
+        "n_configs": 9
+      },
+      {
+        "scenario": "TM-04-ROUNDTRIP",
+        "budget_frac": 1.0,
+        "budget": 7095,
+        "params": {
+          "amount_tolerance": 0.265,
+          "max_days": 15,
+          "min_amount": 9979.45
+        },
+        "current_params": {
+          "max_days": 10,
+          "amount_tolerance": 0.1,
+          "min_amount": 2000
+        },
+        "tuning": {
+          "entities": 6506,
+          "hits": 267,
+          "targets": 3203,
+          "current_entities": 7095
+        },
+        "n_configs": 22
+      },
+      {
+        "scenario": "TM-05-DORMANT",
+        "budget_frac": 1.0,
+        "budget": 43,
+        "params": {
+          "burst_days": 24,
+          "dormant_days": 89,
+          "min_total": 26332.99,
+          "min_txn": 11
+        },
+        "current_params": {
+          "dormant_days": 90,
+          "burst_days": 14,
+          "min_txn": 5,
+          "min_total": 15000
+        },
+        "tuning": {
+          "entities": 38,
+          "hits": 13,
+          "targets": 3203,
+          "current_entities": 43
+        },
+        "n_configs": 100
+      },
+      {
+        "scenario": "TM-06-HIGHRISK",
+        "budget_frac": 1.0,
+        "budget": 8637,
+        "params": {
+          "min_count": 3,
+          "min_total": 1414.12,
+          "window_days": 12
+        },
+        "current_params": {
+          "window_days": 30,
+          "min_total": 20000,
+          "min_count": 2
+        },
+        "tuning": {
+          "entities": 8497,
+          "hits": 355,
+          "targets": 3203,
+          "current_entities": 8637
+        },
+        "n_configs": 174
+      }
+    ],
+    "lean": [
+      {
+        "scenario": "TM-01-STRUCT",
+        "budget_frac": 0.25,
+        "budget": 5,
+        "params": {
+          "lower_band_frac": 0.227,
+          "min_count": 8,
+          "min_total": 3787.58,
+          "window_days": 30
+        },
+        "current_params": {
+          "lower_band_frac": 0.8,
+          "window_days": 7,
+          "min_count": 4,
+          "min_total": 10000
+        },
+        "tuning": {
+          "entities": 5,
+          "hits": 4,
+          "targets": 3203,
+          "current_entities": 0
+        },
+        "n_configs": 1208
+      },
+      {
+        "scenario": "TM-02-PASSTHRU",
+        "budget_frac": 0.25,
+        "budget": 1276,
+        "params": {
+          "min_events": 2,
+          "min_forward_ratio": 0.591,
+          "min_in_amount": 15107.02,
+          "window_hours": 25
+        },
+        "current_params": {
+          "min_in_amount": 3000,
+          "window_hours": 48,
+          "min_forward_ratio": 0.9,
+          "min_events": 2
+        },
+        "tuning": {
+          "entities": 1146,
+          "hits": 37,
+          "targets": 3203,
+          "current_entities": 5104
+        },
+        "n_configs": 41
+      },
+      {
+        "scenario": "TM-03-FAN",
+        "budget_frac": 0.25,
+        "budget": 968,
+        "params": {
+          "min_counterparties": 33,
+          "min_onward_ratio": 0.611,
+          "min_total": 1300.55,
+          "window_days": 14
+        },
+        "current_params": {
+          "window_days": 7,
+          "min_counterparties": 10,
+          "min_total": 5000,
+          "min_onward_ratio": 0.5
+        },
+        "tuning": {
+          "entities": 13,
+          "hits": 0,
+          "targets": 3203,
+          "current_entities": 3869
+        },
+        "n_configs": 8
+      },
+      {
+        "scenario": "TM-04-ROUNDTRIP",
+        "budget_frac": 0.25,
+        "budget": 1774,
+        "params": {
+          "max_days": 10,
+          "amount_tolerance": 0.1,
+          "min_amount": 2000
+        },
+        "current_params": {
+          "max_days": 10,
+          "amount_tolerance": 0.1,
+          "min_amount": 2000
+        },
+        "tuning": {
+          "entities": 7095,
+          "hits": 265,
+          "targets": 3203,
+          "current_entities": 7095
+        },
+        "n_configs": 22
+      },
+      {
+        "scenario": "TM-05-DORMANT",
+        "budget_frac": 0.25,
+        "budget": 11,
+        "params": {
+          "burst_days": 6,
+          "dormant_days": 122,
+          "min_total": 4481.74,
+          "min_txn": 6
+        },
+        "current_params": {
+          "dormant_days": 90,
+          "burst_days": 14,
+          "min_txn": 5,
+          "min_total": 15000
+        },
+        "tuning": {
+          "entities": 1,
+          "hits": 0,
+          "targets": 3203,
+          "current_entities": 43
+        },
+        "n_configs": 69
+      },
+      {
+        "scenario": "TM-06-HIGHRISK",
+        "budget_frac": 0.25,
+        "budget": 2160,
+        "params": {
+          "window_days": 30,
+          "min_total": 20000,
+          "min_count": 2
+        },
+        "current_params": {
+          "window_days": 30,
+          "min_total": 20000,
+          "min_count": 2
+        },
+        "tuning": {
+          "entities": 8637,
+          "hits": 333,
+          "targets": 3203,
+          "current_entities": 8637
+        },
+        "n_configs": 157
+      }
+    ]
+  }
+}

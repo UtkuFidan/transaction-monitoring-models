@@ -1,0 +1,793 @@
+{
+  "model": {
+    "n_entities": 762,
+    "n_positives": 37,
+    "prevalence": 0.048556430446194225,
+    "design": {
+      "cut": null,
+      "fractions": [
+        0.5,
+        0.2,
+        0.3
+      ],
+      "seed": 42,
+      "populations": {
+        "train": {
+          "entities": 1217,
+          "positives": 58
+        },
+        "val": {
+          "entities": 521,
+          "positives": 20
+        },
+        "test": {
+          "entities": 762,
+          "positives": 37
+        }
+      },
+      "early_rows": 254912,
+      "late_rows": 254912
+    },
+    "feature_ablation": [
+      {
+        "features": "base",
+        "n_features": 30,
+        "val_pr_auc": 0.8877787127702979
+      },
+      {
+        "features": "+ burstiness",
+        "n_features": 36,
+        "val_pr_auc": 0.8532604813742097
+      },
+      {
+        "features": "+ 2-hop structure",
+        "n_features": 40,
+        "val_pr_auc": 0.8318457903313217
+      },
+      {
+        "features": "+ risk propagation",
+        "n_features": 43,
+        "val_pr_auc": 0.8700617210124129
+      }
+    ],
+    "n_features": 43,
+    "tuning": {
+      "lightgbm": {
+        "library": "lightgbm",
+        "val_pr_auc_tuning": 0.8895234930761247,
+        "n_trials": 44,
+        "seconds": 60.9,
+        "val_pr_auc": 0.8895234930761247,
+        "test_pr_auc": 0.9166212161320209
+      },
+      "xgboost": {
+        "library": "xgboost",
+        "val_pr_auc_tuning": 0.8989484767025093,
+        "n_trials": 187,
+        "seconds": 60.3,
+        "val_pr_auc": 0.8989484767025093,
+        "test_pr_auc": 0.9237586115611037
+      },
+      "catboost": {
+        "library": "catboost",
+        "val_pr_auc_tuning": 0.9490387901572113,
+        "n_trials": 93,
+        "seconds": 60.1,
+        "val_pr_auc": 0.9490387901572113,
+        "test_pr_auc": 0.9533760602540546
+      }
+    },
+    "validation_pr_auc": {
+      "lightgbm": 0.8895234930761247,
+      "xgboost": 0.8989484767025093,
+      "catboost": 0.9490387901572113,
+      "blend": 0.9181195596518179
+    },
+    "selected_model": "catboost",
+    "blend_weights": {
+      "gbm": 1.0,
+      "isolation": 0.0,
+      "rules": 0.0,
+      "val_pr_auc": 0.9490387901572113
+    },
+    "pr_auc": {
+      "rules_binary": 0.28677200822870114,
+      "rules_tuned": 0.365650714691069,
+      "isolation_forest": 0.3396688351772067,
+      "gradient_boosting": 0.9533760602540546,
+      "combined": 0.9533760602540546,
+      "lightgbm_default": 0.8888948872194856,
+      "lightgbm": 0.9166212161320209,
+      "xgboost": 0.9237586115611037,
+      "catboost": 0.9533760602540546,
+      "blend": 0.9393869591261437
+    },
+    "roc_auc": {
+      "isolation_forest": 0.8865237651444549,
+      "gradient_boosting": 0.9963466915191054,
+      "combined": 0.9963466915191054
+    },
+    "pr_auc_ci": {
+      "gradient_boosting": [
+        0.8958110596580124,
+        0.9910758781341399
+      ],
+      "combined": [
+        0.8958110596580124,
+        0.9910758781341399
+      ],
+      "isolation_forest": [
+        0.21871740779226637,
+        0.48716887535545494
+      ]
+    },
+    "random_split_oof_pr_auc": 0.9050296147189271,
+    "rules": {
+      "untuned": {
+        "alerted_entities": 72,
+        "share_of_entities": 0.09448818897637795,
+        "recall": 0.7297297297297297,
+        "precision": 0.375,
+        "pr_auc_binary": 0.28677200822870114
+      },
+      "same_workload": {
+        "alerted_entities": 64,
+        "share_of_entities": 0.08398950131233596,
+        "recall": 0.7837837837837838,
+        "precision": 0.453125,
+        "pr_auc_binary": 0.365650714691069
+      },
+      "lean": {
+        "alerted_entities": 17,
+        "share_of_entities": 0.02230971128608924,
+        "recall": 0.32432432432432434,
+        "precision": 0.7058823529411765,
+        "pr_auc_binary": 0.26174321612024254
+      }
+    },
+    "equal_recall": {
+      "target_recall": 0.7297297297297297,
+      "rules_alerts": 72,
+      "gbm_alerts": 28,
+      "combined_alerts": 28,
+      "reduction_gbm": 0.6111111111111112,
+      "reduction_combined": 0.6111111111111112,
+      "gbm_recall_at_rules_budget": 0.972972972972973,
+      "reduction_gbm_ci": [
+        0.4998529411764706,
+        0.7301587301587302
+      ]
+    },
+    "equal_recall_by_rules": {
+      "untuned": {
+        "target_recall": 0.7297297297297297,
+        "rules_alerts": 72,
+        "gbm_alerts": 28,
+        "combined_alerts": 28,
+        "reduction_gbm": 0.6111111111111112,
+        "reduction_combined": 0.6111111111111112,
+        "gbm_recall_at_rules_budget": 0.972972972972973,
+        "reduction_gbm_ci": [
+          0.4998529411764706,
+          0.7301587301587302
+        ]
+      },
+      "same_workload": {
+        "target_recall": 0.7837837837837838,
+        "rules_alerts": 64,
+        "gbm_alerts": 30,
+        "combined_alerts": 30,
+        "reduction_gbm": 0.53125,
+        "reduction_combined": 0.53125,
+        "gbm_recall_at_rules_budget": 0.972972972972973,
+        "reduction_gbm_ci": [
+          0.38087301587301586,
+          0.6545454545454545
+        ]
+      },
+      "lean": {
+        "target_recall": 0.32432432432432434,
+        "rules_alerts": 17,
+        "gbm_alerts": 12,
+        "combined_alerts": 12,
+        "reduction_gbm": 0.2941176470588235,
+        "reduction_combined": 0.2941176470588235,
+        "gbm_recall_at_rules_budget": 0.4594594594594595,
+        "reduction_gbm_ci": [
+          0.08317307692307696,
+          0.5238721804511278
+        ]
+      }
+    },
+    "workload_at_recall": {
+      "0.5": {
+        "gbm": 19,
+        "combined": 19,
+        "isolation_forest": 89
+      },
+      "0.8": {
+        "gbm": 31,
+        "combined": 31,
+        "isolation_forest": 136
+      },
+      "0.9": {
+        "gbm": 39,
+        "combined": 39,
+        "isolation_forest": 205
+      },
+      "0.95": {
+        "gbm": 44,
+        "combined": 44,
+        "isolation_forest": 229
+      }
+    },
+    "per_scenario": [
+      {
+        "config": "untuned",
+        "scenario": "TM-01-STRUCT",
+        "entities": 13,
+        "precision": 0.3076923076923077,
+        "own_recall": 0.5714285714285714
+      },
+      {
+        "config": "untuned",
+        "scenario": "TM-02-PASSTHRU",
+        "entities": 13,
+        "precision": 0.7692307692307693,
+        "own_recall": 0.8333333333333334
+      },
+      {
+        "config": "untuned",
+        "scenario": "TM-03-FAN",
+        "entities": 40,
+        "precision": 0.2,
+        "own_recall": 0.875
+      },
+      {
+        "config": "untuned",
+        "scenario": "TM-04-ROUNDTRIP",
+        "entities": 5,
+        "precision": 1.0,
+        "own_recall": 0.625
+      },
+      {
+        "config": "untuned",
+        "scenario": "TM-05-DORMANT",
+        "entities": 4,
+        "precision": 1.0,
+        "own_recall": 0.6666666666666666
+      },
+      {
+        "config": "untuned",
+        "scenario": "TM-06-HIGHRISK",
+        "entities": 3,
+        "precision": 0.3333333333333333,
+        "own_recall": 0.5
+      },
+      {
+        "config": "same_workload",
+        "scenario": "TM-01-STRUCT",
+        "entities": 15,
+        "precision": 0.3333333333333333,
+        "own_recall": 0.7142857142857143
+      },
+      {
+        "config": "same_workload",
+        "scenario": "TM-02-PASSTHRU",
+        "entities": 7,
+        "precision": 0.8571428571428571,
+        "own_recall": 1.0
+      },
+      {
+        "config": "same_workload",
+        "scenario": "TM-03-FAN",
+        "entities": 30,
+        "precision": 0.23333333333333334,
+        "own_recall": 0.875
+      },
+      {
+        "config": "same_workload",
+        "scenario": "TM-04-ROUNDTRIP",
+        "entities": 5,
+        "precision": 1.0,
+        "own_recall": 0.625
+      },
+      {
+        "config": "same_workload",
+        "scenario": "TM-05-DORMANT",
+        "entities": 4,
+        "precision": 1.0,
+        "own_recall": 0.6666666666666666
+      },
+      {
+        "config": "same_workload",
+        "scenario": "TM-06-HIGHRISK",
+        "entities": 3,
+        "precision": 0.6666666666666666,
+        "own_recall": 1.0
+      },
+      {
+        "config": "lean",
+        "scenario": "TM-01-STRUCT",
+        "entities": 4,
+        "precision": 0.75,
+        "own_recall": 0.42857142857142855
+      },
+      {
+        "config": "lean",
+        "scenario": "TM-02-PASSTHRU",
+        "entities": 1,
+        "precision": 1.0,
+        "own_recall": 0.16666666666666666
+      },
+      {
+        "config": "lean",
+        "scenario": "TM-03-FAN",
+        "entities": 7,
+        "precision": 0.42857142857142855,
+        "own_recall": 0.375
+      },
+      {
+        "config": "lean",
+        "scenario": "TM-04-ROUNDTRIP",
+        "entities": 1,
+        "precision": 1.0,
+        "own_recall": 0.125
+      },
+      {
+        "config": "lean",
+        "scenario": "TM-05-DORMANT",
+        "entities": 4,
+        "precision": 1.0,
+        "own_recall": 0.6666666666666666
+      },
+      {
+        "config": "lean",
+        "scenario": "TM-06-HIGHRISK",
+        "entities": 0,
+        "precision": null,
+        "own_recall": 0.0
+      }
+    ],
+    "per_typology": [
+      {
+        "typology": "roundtrip",
+        "entities": 8,
+        "rules_untuned": 0.75,
+        "model_untuned_budget": 1.0,
+        "rules_same_workload": 0.625,
+        "model_same_workload_budget": 1.0,
+        "rules_lean": 0.125,
+        "model_lean_budget": 0.625
+      },
+      {
+        "typology": "structuring",
+        "entities": 7,
+        "rules_untuned": 0.5714,
+        "model_untuned_budget": 1.0,
+        "rules_same_workload": 0.7143,
+        "model_same_workload_budget": 1.0,
+        "rules_lean": 0.4286,
+        "model_lean_budget": 0.4286
+      },
+      {
+        "typology": "dormant",
+        "entities": 6,
+        "rules_untuned": 0.6667,
+        "model_untuned_budget": 1.0,
+        "rules_same_workload": 0.6667,
+        "model_same_workload_budget": 1.0,
+        "rules_lean": 0.6667,
+        "model_lean_budget": 0.6667
+      },
+      {
+        "typology": "passthrough",
+        "entities": 6,
+        "rules_untuned": 0.8333,
+        "model_untuned_budget": 1.0,
+        "rules_same_workload": 1.0,
+        "model_same_workload_budget": 1.0,
+        "rules_lean": 0.1667,
+        "model_lean_budget": 0.3333
+      },
+      {
+        "typology": "fan_in",
+        "entities": 5,
+        "rules_untuned": 1.0,
+        "model_untuned_budget": 1.0,
+        "rules_same_workload": 1.0,
+        "model_same_workload_budget": 1.0,
+        "rules_lean": 0.4,
+        "model_lean_budget": 0.4
+      },
+      {
+        "typology": "fan_out",
+        "entities": 3,
+        "rules_untuned": 0.6667,
+        "model_untuned_budget": 0.6667,
+        "rules_same_workload": 0.6667,
+        "model_same_workload_budget": 0.6667,
+        "rules_lean": 0.3333,
+        "model_lean_budget": 0.0
+      },
+      {
+        "typology": "high_risk",
+        "entities": 2,
+        "rules_untuned": 0.5,
+        "model_untuned_budget": 1.0,
+        "rules_same_workload": 1.0,
+        "model_same_workload_budget": 1.0,
+        "rules_lean": 0.0,
+        "model_lean_budget": 0.5
+      }
+    ],
+    "seconds": 442
+  },
+  "productivity": [
+    {
+      "scenario": "TM-01-STRUCT",
+      "alerts": 24,
+      "entities": 13,
+      "true_positive": 4,
+      "conversion": 0.3076923076923077,
+      "own_typology_hits": 4,
+      "own_precision": 0.3076923076923077,
+      "own_recall": 0.5714285714285714
+    },
+    {
+      "scenario": "TM-02-PASSTHRU",
+      "alerts": 25,
+      "entities": 13,
+      "true_positive": 10,
+      "conversion": 0.7692307692307693,
+      "own_typology_hits": 5,
+      "own_precision": 0.38461538461538464,
+      "own_recall": 0.8333333333333334
+    },
+    {
+      "scenario": "TM-03-FAN",
+      "alerts": 136,
+      "entities": 40,
+      "true_positive": 8,
+      "conversion": 0.2,
+      "own_typology_hits": 7,
+      "own_precision": 0.175,
+      "own_recall": 0.875
+    },
+    {
+      "scenario": "TM-04-ROUNDTRIP",
+      "alerts": 8,
+      "entities": 5,
+      "true_positive": 5,
+      "conversion": 1.0,
+      "own_typology_hits": 5,
+      "own_precision": 1.0,
+      "own_recall": 0.625
+    },
+    {
+      "scenario": "TM-05-DORMANT",
+      "alerts": 4,
+      "entities": 4,
+      "true_positive": 4,
+      "conversion": 1.0,
+      "own_typology_hits": 4,
+      "own_precision": 1.0,
+      "own_recall": 0.6666666666666666
+    },
+    {
+      "scenario": "TM-06-HIGHRISK",
+      "alerts": 4,
+      "entities": 3,
+      "true_positive": 1,
+      "conversion": 0.3333333333333333,
+      "own_typology_hits": 1,
+      "own_precision": 0.3333333333333333,
+      "own_recall": 0.5
+    }
+  ],
+  "atl": {
+    "n_atl": 72,
+    "n_btl": 690,
+    "truth_btl_positives": 10,
+    "truth_total_positives": 37,
+    "conf": 0.95,
+    "random": {
+      "rate": 0.015,
+      "lo": 0.00310410762155351,
+      "hi": 0.0432082819177126,
+      "est": 10.35,
+      "est_lo": 3.0,
+      "est_hi": 29.813714523221694,
+      "n": 200,
+      "k": 3,
+      "sample": 200
+    },
+    "stratified": {
+      "est": 10.0,
+      "se": 5.664933639914345,
+      "est_lo": 10.0,
+      "est_hi": 21.10306590904151,
+      "found": 10,
+      "strata": [
+        {
+          "stratum": "top10",
+          "pop": 69,
+          "n": 69,
+          "k": 10,
+          "truth": 10
+        },
+        {
+          "stratum": "mid30",
+          "pop": 207,
+          "n": 70,
+          "k": 0,
+          "truth": 0
+        },
+        {
+          "stratum": "rest60",
+          "pop": 414,
+          "n": 50,
+          "k": 0,
+          "truth": 0
+        }
+      ]
+    },
+    "atl": {
+      "n": 72,
+      "k": 27,
+      "precision": 0.375,
+      "lo": 0.26361094760164844,
+      "hi": 0.4970140706287165,
+      "truth_precision": 0.375
+    },
+    "coverage_check": {
+      "reps": 500,
+      "covered": 1.0
+    },
+    "targeted": {
+      "n": 200,
+      "found": 10,
+      "random_expected": 2.898550724637681
+    }
+  },
+  "per_scenario_btl": [
+    {
+      "scenario": "TM-01-STRUCT",
+      "btl_population": 749,
+      "sample": 150,
+      "found": 1,
+      "est_missed": 4.993333333333333,
+      "est_lo": 1.0,
+      "est_hi": 27.400792637694607,
+      "truth_missed": 3,
+      "n_to_detect_at_truth": 747
+    },
+    {
+      "scenario": "TM-02-PASSTHRU",
+      "btl_population": 749,
+      "sample": 150,
+      "found": 1,
+      "est_missed": 4.993333333333333,
+      "est_lo": 1.0,
+      "est_hi": 27.400792637694607,
+      "truth_missed": 1,
+      "n_to_detect_at_truth": 2243
+    },
+    {
+      "scenario": "TM-03-FAN",
+      "btl_population": 722,
+      "sample": 150,
+      "found": 1,
+      "est_missed": 4.8133333333333335,
+      "est_lo": 1.0,
+      "est_hi": 26.41304710869894,
+      "truth_missed": 1,
+      "n_to_detect_at_truth": 2162
+    },
+    {
+      "scenario": "TM-04-ROUNDTRIP",
+      "btl_population": 757,
+      "sample": 150,
+      "found": 0,
+      "est_missed": 0.0,
+      "est_lo": 0.0,
+      "est_hi": 18.389496054744164,
+      "truth_missed": 3,
+      "n_to_detect_at_truth": 755
+    },
+    {
+      "scenario": "TM-05-DORMANT",
+      "btl_population": 758,
+      "sample": 150,
+      "found": 0,
+      "est_missed": 0.0,
+      "est_lo": 0.0,
+      "est_hi": 18.413788651910274,
+      "truth_missed": 2,
+      "n_to_detect_at_truth": 1134
+    },
+    {
+      "scenario": "TM-06-HIGHRISK",
+      "btl_population": 759,
+      "sample": 150,
+      "found": 0,
+      "est_missed": 0.0,
+      "est_lo": 0.0,
+      "est_hi": 18.438081249076383,
+      "truth_missed": 1,
+      "n_to_detect_at_truth": 2273
+    }
+  ],
+  "coverage_evasive": {
+    "TM-01-STRUCT": {
+      "structuring": 0.0,
+      "passthrough": 0.0,
+      "fan_in": NaN,
+      "fan_out": 0.0,
+      "roundtrip": 0.0,
+      "dormant": 0.0,
+      "high_risk": 0.0
+    },
+    "TM-02-PASSTHRU": {
+      "structuring": 0.0,
+      "passthrough": 0.0,
+      "fan_in": NaN,
+      "fan_out": 0.0,
+      "roundtrip": 0.0,
+      "dormant": 0.0,
+      "high_risk": 0.0
+    },
+    "TM-03-FAN": {
+      "structuring": 0.0,
+      "passthrough": 0.0,
+      "fan_in": NaN,
+      "fan_out": 0.0,
+      "roundtrip": 0.333,
+      "dormant": 0.0,
+      "high_risk": 0.0
+    },
+    "TM-04-ROUNDTRIP": {
+      "structuring": 0.0,
+      "passthrough": 0.0,
+      "fan_in": NaN,
+      "fan_out": 0.0,
+      "roundtrip": 0.0,
+      "dormant": 0.0,
+      "high_risk": 0.0
+    },
+    "TM-05-DORMANT": {
+      "structuring": 0.0,
+      "passthrough": 0.0,
+      "fan_in": NaN,
+      "fan_out": 0.0,
+      "roundtrip": 0.0,
+      "dormant": 0.0,
+      "high_risk": 0.0
+    },
+    "TM-06-HIGHRISK": {
+      "structuring": 0.0,
+      "passthrough": 0.0,
+      "fan_in": NaN,
+      "fan_out": 0.0,
+      "roundtrip": 0.0,
+      "dormant": 0.0,
+      "high_risk": 0.0
+    },
+    "ANY": {
+      "structuring": 0.0,
+      "passthrough": 0.0,
+      "fan_in": NaN,
+      "fan_out": 0.0,
+      "roundtrip": 0.333,
+      "dormant": 0.0,
+      "high_risk": 0.0
+    }
+  },
+  "coverage_obvious": {
+    "TM-01-STRUCT": {
+      "structuring": 1.0,
+      "passthrough": 0.0,
+      "fan_in": 0.0,
+      "fan_out": 0.0,
+      "roundtrip": 0.0,
+      "dormant": 0.0,
+      "high_risk": 0.0
+    },
+    "TM-02-PASSTHRU": {
+      "structuring": 0.0,
+      "passthrough": 1.0,
+      "fan_in": 0.0,
+      "fan_out": 0.0,
+      "roundtrip": 1.0,
+      "dormant": 0.0,
+      "high_risk": 0.0
+    },
+    "TM-03-FAN": {
+      "structuring": 0.0,
+      "passthrough": 0.0,
+      "fan_in": 1.0,
+      "fan_out": 1.0,
+      "roundtrip": 0.0,
+      "dormant": 0.0,
+      "high_risk": 0.0
+    },
+    "TM-04-ROUNDTRIP": {
+      "structuring": 0.0,
+      "passthrough": 0.0,
+      "fan_in": 0.0,
+      "fan_out": 0.0,
+      "roundtrip": 1.0,
+      "dormant": 0.0,
+      "high_risk": 0.0
+    },
+    "TM-05-DORMANT": {
+      "structuring": 0.0,
+      "passthrough": 0.0,
+      "fan_in": 0.0,
+      "fan_out": 0.0,
+      "roundtrip": 0.0,
+      "dormant": 1.0,
+      "high_risk": 0.0
+    },
+    "TM-06-HIGHRISK": {
+      "structuring": 0.0,
+      "passthrough": 0.0,
+      "fan_in": 0.0,
+      "fan_out": 0.0,
+      "roundtrip": 0.0,
+      "dormant": 0.0,
+      "high_risk": 1.0
+    },
+    "ANY": {
+      "structuring": 1.0,
+      "passthrough": 1.0,
+      "fan_in": 1.0,
+      "fan_out": 1.0,
+      "roundtrip": 1.0,
+      "dormant": 1.0,
+      "high_risk": 1.0
+    }
+  },
+  "findings": [
+    {
+      "id": "F-01",
+      "title": "Low alert-to-case conversion in selected scenarios",
+      "rating": "High"
+    },
+    {
+      "id": "F-02",
+      "title": "Suspicious activity below the line (portfolio BTL test)",
+      "rating": "High"
+    },
+    {
+      "id": "F-03",
+      "title": "Typology coverage gaps for near-threshold (evasive) behaviour",
+      "rating": "High"
+    },
+    {
+      "id": "F-04",
+      "title": "Threshold calibration against sensitivity curves",
+      "rating": "Medium"
+    },
+    {
+      "id": "F-05",
+      "title": "Scenario overlap and unique contribution",
+      "rating": "Medium"
+    },
+    {
+      "id": "F-06",
+      "title": "ML scoring as a challenger to rule prioritisation",
+      "rating": "Medium"
+    },
+    {
+      "id": "F-07",
+      "title": "Rule thresholds tuned on a tuning split versus current thresholds",
+      "rating": "Medium"
+    },
+    {
+      "id": "F-08",
+      "title": "Per-scenario BTL tests are under-powered at typical sample sizes",
+      "rating": "Medium"
+    }
+  ]
+}

@@ -1,0 +1,524 @@
+{
+  "n_entities": 125163,
+  "n_positives": 901,
+  "prevalence": 0.0071986130086367376,
+  "design": {
+    "cut": "2023-03-15 17:43:10.500000",
+    "fractions": [
+      0.6,
+      0.2,
+      0.2
+    ],
+    "seed": 42,
+    "populations": {
+      "train": {
+        "entities": 370712,
+        "positives": 2407
+      },
+      "val": {
+        "entities": 124006,
+        "positives": 796
+      },
+      "test": {
+        "entities": 125163,
+        "positives": 901
+      }
+    },
+    "early_rows": 4752426,
+    "late_rows": 4752426
+  },
+  "feature_ablation": [
+    {
+      "features": "base",
+      "n_features": 30,
+      "val_pr_auc": 0.7570716339960233
+    },
+    {
+      "features": "+ burstiness",
+      "n_features": 36,
+      "val_pr_auc": 0.7572187209718227
+    },
+    {
+      "features": "+ 2-hop structure",
+      "n_features": 40,
+      "val_pr_auc": 0.965590705095795
+    },
+    {
+      "features": "+ risk propagation",
+      "n_features": 43,
+      "val_pr_auc": 0.9900558434609782
+    }
+  ],
+  "n_features": 43,
+  "tuning": {
+    "lightgbm": {
+      "library": "lightgbm",
+      "val_pr_auc_tuning": 0.9924925370116616,
+      "n_trials": 32,
+      "seconds": 200.6,
+      "val_pr_auc": 0.9905986087824697,
+      "test_pr_auc": 0.9875994464795926
+    },
+    "xgboost": {
+      "library": "xgboost",
+      "val_pr_auc_tuning": 0.9927790190934803,
+      "n_trials": 66,
+      "seconds": 201.4,
+      "val_pr_auc": 0.9914919759024324,
+      "test_pr_auc": 0.9759873995117736
+    },
+    "catboost": {
+      "library": "catboost",
+      "val_pr_auc_tuning": 0.991915197528355,
+      "n_trials": 16,
+      "seconds": 201.5,
+      "val_pr_auc": 0.9913261387761171,
+      "test_pr_auc": 0.991905917955764
+    }
+  },
+  "validation_pr_auc": {
+    "lightgbm": 0.9905986087824697,
+    "xgboost": 0.9914919759024324,
+    "catboost": 0.9913261387761171,
+    "blend": 0.9919636944862095
+  },
+  "selected_model": "blend",
+  "blend_weights": {
+    "gbm": 1.0,
+    "isolation": 0.0,
+    "rules": 0.0,
+    "val_pr_auc": 0.9919636944862095
+  },
+  "pr_auc": {
+    "rules_binary": 0.018231911857677106,
+    "rules_tuned": 0.01923597212132099,
+    "isolation_forest": 0.11293220017101809,
+    "gradient_boosting": 0.9884857031588855,
+    "combined": 0.9884857031588855,
+    "lightgbm_default": 0.6353841556054903,
+    "lightgbm": 0.9875994464795926,
+    "xgboost": 0.9759873995117736,
+    "catboost": 0.991905917955764,
+    "blend": 0.9884857031588855
+  },
+  "roc_auc": {
+    "isolation_forest": 0.9600684662000278,
+    "gradient_boosting": 0.9993715705516489,
+    "combined": 0.9993715705516489
+  },
+  "pr_auc_ci": {
+    "gradient_boosting": [
+      0.9830773104694855,
+      0.9934388969045064
+    ],
+    "combined": [
+      0.9830773104694855,
+      0.9934388969045064
+    ],
+    "isolation_forest": [
+      0.10479902853528819,
+      0.1213116560481069
+    ]
+  },
+  "random_split_oof_pr_auc": 0.9924427008140481,
+  "rules": {
+    "untuned": {
+      "alerted_entities": 4710,
+      "share_of_entities": 0.03763092926823422,
+      "recall": 0.2597114317425083,
+      "precision": 0.049681528662420385,
+      "pr_auc_binary": 0.018231911857677106
+    },
+    "same_workload": {
+      "alerted_entities": 4475,
+      "share_of_entities": 0.03575337759561532,
+      "recall": 0.2630410654827969,
+      "precision": 0.0529608938547486,
+      "pr_auc_binary": 0.01923597212132099
+    },
+    "lean": {
+      "alerted_entities": 3882,
+      "share_of_entities": 0.031015555715347188,
+      "recall": 0.19311875693673697,
+      "precision": 0.04482225656877898,
+      "pr_auc_binary": 0.014464444284402276
+    }
+  },
+  "equal_recall": {
+    "target_recall": 0.2597114317425083,
+    "rules_alerts": 4710,
+    "gbm_alerts": 234,
+    "combined_alerts": 234,
+    "reduction_gbm": 0.9503184713375796,
+    "reduction_combined": 0.9503184713375796,
+    "gbm_recall_at_rules_budget": 0.9977802441731409,
+    "reduction_gbm_ci": [
+      0.9448110407869538,
+      0.9559811786898016
+    ]
+  },
+  "equal_recall_by_rules": {
+    "untuned": {
+      "target_recall": 0.2597114317425083,
+      "rules_alerts": 4710,
+      "gbm_alerts": 234,
+      "combined_alerts": 234,
+      "reduction_gbm": 0.9503184713375796,
+      "reduction_combined": 0.9503184713375796,
+      "gbm_recall_at_rules_budget": 0.9977802441731409,
+      "reduction_gbm_ci": [
+        0.9448110407869538,
+        0.9559811786898016
+      ]
+    },
+    "same_workload": {
+      "target_recall": 0.2630410654827969,
+      "rules_alerts": 4475,
+      "gbm_alerts": 237,
+      "combined_alerts": 237,
+      "reduction_gbm": 0.9470391061452514,
+      "reduction_combined": 0.9470391061452514,
+      "gbm_recall_at_rules_budget": 0.9977802441731409,
+      "reduction_gbm_ci": [
+        0.9411562327086973,
+        0.9528433408987005
+      ]
+    },
+    "lean": {
+      "target_recall": 0.19311875693673697,
+      "rules_alerts": 3882,
+      "gbm_alerts": 174,
+      "combined_alerts": 174,
+      "reduction_gbm": 0.955177743431221,
+      "reduction_combined": 0.955177743431221,
+      "gbm_recall_at_rules_budget": 0.9966703662597114,
+      "reduction_gbm_ci": [
+        0.948765847818773,
+        0.9607976723001684
+      ]
+    }
+  },
+  "workload_at_recall": {
+    "0.5": {
+      "gbm": 451,
+      "combined": 451,
+      "isolation_forest": 3494
+    },
+    "0.8": {
+      "gbm": 721,
+      "combined": 721,
+      "isolation_forest": 4302
+    },
+    "0.9": {
+      "gbm": 813,
+      "combined": 813,
+      "isolation_forest": 8153
+    },
+    "0.95": {
+      "gbm": 867,
+      "combined": 867,
+      "isolation_forest": 25554
+    }
+  },
+  "per_scenario": [
+    {
+      "config": "untuned",
+      "scenario": "TM-01-STRUCT",
+      "entities": 0,
+      "precision": null,
+      "own_recall": 0.0
+    },
+    {
+      "config": "untuned",
+      "scenario": "TM-02-PASSTHRU",
+      "entities": 1498,
+      "precision": 0.04672897196261682,
+      "own_recall": 0.07769145394006659
+    },
+    {
+      "config": "untuned",
+      "scenario": "TM-03-FAN",
+      "entities": 1034,
+      "precision": 0.04642166344294004,
+      "own_recall": 0.05327413984461709
+    },
+    {
+      "config": "untuned",
+      "scenario": "TM-04-ROUNDTRIP",
+      "entities": 1923,
+      "precision": 0.04472178887155486,
+      "own_recall": 0.09544950055493896
+    },
+    {
+      "config": "untuned",
+      "scenario": "TM-05-DORMANT",
+      "entities": 7,
+      "precision": 0.14285714285714285,
+      "own_recall": 0.0011098779134295228
+    },
+    {
+      "config": "untuned",
+      "scenario": "TM-06-HIGHRISK",
+      "entities": 2063,
+      "precision": 0.0489578284052351,
+      "own_recall": 0.1120976692563818
+    },
+    {
+      "config": "same_workload",
+      "scenario": "TM-01-STRUCT",
+      "entities": 0,
+      "precision": null,
+      "own_recall": 0.0
+    },
+    {
+      "config": "same_workload",
+      "scenario": "TM-02-PASSTHRU",
+      "entities": 1498,
+      "precision": 0.04672897196261682,
+      "own_recall": 0.07769145394006659
+    },
+    {
+      "config": "same_workload",
+      "scenario": "TM-03-FAN",
+      "entities": 1034,
+      "precision": 0.04642166344294004,
+      "own_recall": 0.05327413984461709
+    },
+    {
+      "config": "same_workload",
+      "scenario": "TM-04-ROUNDTRIP",
+      "entities": 1689,
+      "precision": 0.05328596802841918,
+      "own_recall": 0.09988901220865705
+    },
+    {
+      "config": "same_workload",
+      "scenario": "TM-05-DORMANT",
+      "entities": 6,
+      "precision": 0.3333333333333333,
+      "own_recall": 0.0022197558268590455
+    },
+    {
+      "config": "same_workload",
+      "scenario": "TM-06-HIGHRISK",
+      "entities": 2001,
+      "precision": 0.04697651174412794,
+      "own_recall": 0.10432852386237514
+    },
+    {
+      "config": "lean",
+      "scenario": "TM-01-STRUCT",
+      "entities": 1,
+      "precision": 1.0,
+      "own_recall": 0.0011098779134295228
+    },
+    {
+      "config": "lean",
+      "scenario": "TM-02-PASSTHRU",
+      "entities": 277,
+      "precision": 0.04332129963898917,
+      "own_recall": 0.013318534961154272
+    },
+    {
+      "config": "lean",
+      "scenario": "TM-03-FAN",
+      "entities": 4,
+      "precision": 0.0,
+      "own_recall": 0.0
+    },
+    {
+      "config": "lean",
+      "scenario": "TM-04-ROUNDTRIP",
+      "entities": 1923,
+      "precision": 0.04472178887155486,
+      "own_recall": 0.09544950055493896
+    },
+    {
+      "config": "lean",
+      "scenario": "TM-05-DORMANT",
+      "entities": 0,
+      "precision": null,
+      "own_recall": 0.0
+    },
+    {
+      "config": "lean",
+      "scenario": "TM-06-HIGHRISK",
+      "entities": 2063,
+      "precision": 0.0489578284052351,
+      "own_recall": 0.1120976692563818
+    }
+  ],
+  "per_typology": [
+    {
+      "typology": "Structuring",
+      "entities": 208,
+      "rules_untuned": 0.2404,
+      "model_untuned_budget": 1.0,
+      "rules_same_workload": 0.2452,
+      "model_same_workload_budget": 1.0,
+      "rules_lean": 0.1875,
+      "model_lean_budget": 1.0
+    },
+    {
+      "typology": "Deposit-Send",
+      "entities": 119,
+      "rules_untuned": 0.2941,
+      "model_untuned_budget": 1.0,
+      "rules_same_workload": 0.3361,
+      "model_same_workload_budget": 1.0,
+      "rules_lean": 0.2017,
+      "model_lean_budget": 1.0
+    },
+    {
+      "typology": "Layered_Fan_In",
+      "entities": 71,
+      "rules_untuned": 0.338,
+      "model_untuned_budget": 1.0,
+      "rules_same_workload": 0.3239,
+      "model_same_workload_budget": 1.0,
+      "rules_lean": 0.2676,
+      "model_lean_budget": 1.0
+    },
+    {
+      "typology": "Layered_Fan_Out",
+      "entities": 61,
+      "rules_untuned": 0.2295,
+      "model_untuned_budget": 0.9836,
+      "rules_same_workload": 0.1803,
+      "model_same_workload_budget": 0.9836,
+      "rules_lean": 0.1475,
+      "model_lean_budget": 0.9836
+    },
+    {
+      "typology": "Behavioural_Change_2",
+      "entities": 53,
+      "rules_untuned": 0.1509,
+      "model_untuned_budget": 1.0,
+      "rules_same_workload": 0.1509,
+      "model_same_workload_budget": 1.0,
+      "rules_lean": 0.1509,
+      "model_lean_budget": 1.0
+    },
+    {
+      "typology": "Fan_In",
+      "entities": 51,
+      "rules_untuned": 0.2353,
+      "model_untuned_budget": 1.0,
+      "rules_same_workload": 0.2941,
+      "model_same_workload_budget": 1.0,
+      "rules_lean": 0.1373,
+      "model_lean_budget": 1.0
+    },
+    {
+      "typology": "Gather-Scatter",
+      "entities": 43,
+      "rules_untuned": 0.2558,
+      "model_untuned_budget": 1.0,
+      "rules_same_workload": 0.2326,
+      "model_same_workload_budget": 1.0,
+      "rules_lean": 0.186,
+      "model_lean_budget": 1.0
+    },
+    {
+      "typology": "Behavioural_Change_1",
+      "entities": 41,
+      "rules_untuned": 0.1707,
+      "model_untuned_budget": 0.9756,
+      "rules_same_workload": 0.1707,
+      "model_same_workload_budget": 0.9756,
+      "rules_lean": 0.1707,
+      "model_lean_budget": 0.9512
+    },
+    {
+      "typology": "Fan_Out",
+      "entities": 40,
+      "rules_untuned": 0.25,
+      "model_untuned_budget": 1.0,
+      "rules_same_workload": 0.275,
+      "model_same_workload_budget": 1.0,
+      "rules_lean": 0.25,
+      "model_lean_budget": 1.0
+    },
+    {
+      "typology": "Stacked Bipartite",
+      "entities": 37,
+      "rules_untuned": 0.2973,
+      "model_untuned_budget": 1.0,
+      "rules_same_workload": 0.2973,
+      "model_same_workload_budget": 1.0,
+      "rules_lean": 0.1622,
+      "model_lean_budget": 1.0
+    },
+    {
+      "typology": "Single_large",
+      "entities": 36,
+      "rules_untuned": 0.3611,
+      "model_untuned_budget": 1.0,
+      "rules_same_workload": 0.3333,
+      "model_same_workload_budget": 1.0,
+      "rules_lean": 0.3056,
+      "model_lean_budget": 1.0
+    },
+    {
+      "typology": "Cycle",
+      "entities": 34,
+      "rules_untuned": 0.2941,
+      "model_untuned_budget": 1.0,
+      "rules_same_workload": 0.3235,
+      "model_same_workload_budget": 1.0,
+      "rules_lean": 0.1471,
+      "model_lean_budget": 1.0
+    },
+    {
+      "typology": "Scatter-Gather",
+      "entities": 31,
+      "rules_untuned": 0.2581,
+      "model_untuned_budget": 1.0,
+      "rules_same_workload": 0.2903,
+      "model_same_workload_budget": 1.0,
+      "rules_lean": 0.1935,
+      "model_lean_budget": 1.0
+    },
+    {
+      "typology": "Bipartite",
+      "entities": 24,
+      "rules_untuned": 0.25,
+      "model_untuned_budget": 1.0,
+      "rules_same_workload": 0.25,
+      "model_same_workload_budget": 1.0,
+      "rules_lean": 0.1667,
+      "model_lean_budget": 1.0
+    },
+    {
+      "typology": "Cash_Withdrawal",
+      "entities": 23,
+      "rules_untuned": 0.2174,
+      "model_untuned_budget": 1.0,
+      "rules_same_workload": 0.1304,
+      "model_same_workload_budget": 1.0,
+      "rules_lean": 0.2174,
+      "model_lean_budget": 1.0
+    },
+    {
+      "typology": "Smurfing",
+      "entities": 19,
+      "rules_untuned": 0.3158,
+      "model_untuned_budget": 1.0,
+      "rules_same_workload": 0.3158,
+      "model_same_workload_budget": 1.0,
+      "rules_lean": 0.1579,
+      "model_lean_budget": 1.0
+    },
+    {
+      "typology": "Over-Invoicing",
+      "entities": 10,
+      "rules_untuned": 0.4,
+      "model_untuned_budget": 1.0,
+      "rules_same_workload": 0.3,
+      "model_same_workload_budget": 1.0,
+      "rules_lean": 0.3,
+      "model_lean_budget": 1.0
+    }
+  ],
+  "seconds": 6869
+}
