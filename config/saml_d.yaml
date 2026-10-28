@@ -1,0 +1,11 @@
+# Thresholds for the SAML-D run. Packaged defaults, except for the country list and the hub cap.
+# Amounts are in mixed currencies, unscaled. Countries: FATF increased-monitoring list at the start of
+# the data period (Oct 2022) that also occur in the data; chosen without looking at the labels.
+reporting_threshold: 10000
+scenarios:
+  structuring: {lower_band_frac: 0.80, window_days: 7, min_count: 4, min_total: 10000}
+  passthrough: {min_in_amount: 3000, window_hours: 48, min_forward_ratio: 0.90, min_events: 2, lookback_days: 30}
+  fan: {window_days: 7, min_counterparties: 10, min_total: 5000, min_onward_ratio: 0.50, max_entity_txns: 2000}
+  roundtrip: {min_amount: 2000, max_days: 10, amount_tolerance: 0.10, max_length: 4}
+  dormant: {dormant_days: 90, burst_days: 14, min_txn: 5, min_total: 15000}
+  high_risk: {countries: [Albania, Morocco, Nigeria, Pakistan, Turkey, UAE], window_days: 30, min_total: 20000, min_count: 2}

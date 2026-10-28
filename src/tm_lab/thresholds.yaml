@@ -1,0 +1,35 @@
+# Scenario thresholds. Amounts are in one notional currency unit.
+reporting_threshold: 10000   # cash-reporting line that structuring tries to stay under
+
+scenarios:
+  structuring:               # TM-01
+    lower_band_frac: 0.80    # deposits in [frac*T, T) count as "just under"
+    window_days: 7
+    min_count: 4
+    min_total: 10000
+  passthrough:               # TM-02
+    min_in_amount: 3000
+    window_hours: 48         # forward within this many hours of the credit
+    min_forward_ratio: 0.90  # share of the credit that leaves again
+    min_events: 2
+    lookback_days: 30
+  fan:                       # TM-03 (fan-in and fan-out)
+    window_days: 7
+    min_counterparties: 10
+    min_total: 5000
+    min_onward_ratio: 0.50   # fan-in: money leaves again; fan-out: funded beforehand
+  roundtrip:                 # TM-04
+    min_amount: 2000
+    max_days: 10             # whole loop must close within this span
+    amount_tolerance: 0.10   # hop amounts within +/-10% of the first hop
+    max_length: 4
+  dormant:                   # TM-05
+    dormant_days: 90
+    burst_days: 14
+    min_txn: 5
+    min_total: 15000
+  high_risk:                 # TM-06
+    countries: [H1, H2, H3]  # placeholder codes for an institution's high-risk list
+    window_days: 30
+    min_total: 20000
+    min_count: 2

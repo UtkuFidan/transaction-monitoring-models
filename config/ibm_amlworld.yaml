@@ -1,0 +1,9 @@
+# Thresholds for the IBM AMLworld HI-Small run (amounts are in mixed currencies, unscaled).
+reporting_threshold: 10000
+scenarios:
+  structuring: {lower_band_frac: 0.80, window_days: 7, min_count: 4, min_total: 10000}
+  passthrough: {min_in_amount: 3000, window_hours: 48, min_forward_ratio: 0.90, min_events: 2, lookback_days: 30}
+  fan: {window_days: 7, min_counterparties: 8, min_total: 5000, min_onward_ratio: 0.50, max_entity_txns: 2000}  # hubs (aggregators) out of scope
+  roundtrip: {min_amount: 2000, max_days: 10, amount_tolerance: 0.10, max_length: 3}
+  dormant: {dormant_days: 90, burst_days: 14, min_txn: 5, min_total: 15000}
+  high_risk: {countries: [], window_days: 30, min_total: 20000, min_count: 2}
